@@ -1,0 +1,74 @@
+<section class="meeting">
+
+  @if (meeting(); as gp) {
+
+    <header class="meeting-header">
+
+      <img
+        [src]="gp.country_flag"
+        [alt]="gp.country_name">
+
+      <div>
+
+        <h1>
+          {{ gp.meeting_name }}
+        </h1>
+
+        <p>
+          {{ gp.location }},
+          {{ gp.country_name }}
+        </p>
+
+        <small>
+          {{ gp.date_start | date:'dd MMM yyyy' }}
+          -
+          {{ gp.date_end | date:'dd MMM yyyy' }}
+        </small>
+
+      </div>
+
+    </header>
+
+  }
+
+
+  <h2>Sessions</h2>
+
+
+  @if (loading()) {
+
+    <p>Loading sessions...</p>
+
+  }
+
+
+  <div class="session-list">
+
+    @for (
+      session of sessions();
+      track session.session_key
+    ) {
+
+      <article
+        class="session-card"
+        (click)="openSession(session)">
+
+        <span>
+          {{ session.session_type }}
+        </span>
+
+        <h3>
+          {{ session.session_name }}
+        </h3>
+
+        <small>
+          {{ session.date_start | date:'dd MMM yyyy HH:mm' }}
+        </small>
+
+      </article>
+
+    }
+
+  </div>
+
+</section>

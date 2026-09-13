@@ -1,0 +1,106 @@
+<section class="dashboard">
+
+  <div class="page-header">
+
+    <div>
+
+      <h1>Formula 1</h1>
+
+      <p>
+        OpenF1 Dashboard
+      </p>
+
+    </div>
+
+    <select
+      [value]="year()"
+      (change)="year.set(+$any($event.target).value); loadMeetings()">
+
+      <option value="2026">
+        2026
+      </option>
+
+      <option value="2025">
+        2025
+      </option>
+
+      <option value="2024">
+        2024
+      </option>
+
+      <option value="2023">
+        2023
+      </option>
+
+    </select>
+
+  </div>
+
+
+  @if (loading()) {
+
+    <div class="loading">
+      Loading Formula 1 calendar...
+    </div>
+
+  }
+
+
+  @if (error()) {
+
+    <div class="error">
+
+      {{ error() }}
+
+    </div>
+
+  }
+
+
+  <div class="meeting-grid">
+
+    @for (
+      meeting of meetings();
+      track meeting.meeting_key
+    ) {
+
+      <article
+        class="meeting-card"
+        (click)="selectMeeting(meeting)">
+
+        <img
+          [src]="meeting.country_flag"
+          [alt]="meeting.country_name"
+          class="flag">
+
+        <div class="country">
+
+          {{ meeting.country_name }}
+
+        </div>
+
+        <h2>
+
+          {{ meeting.meeting_name }}
+
+        </h2>
+
+        <p>
+
+          {{ meeting.location }}
+
+        </p>
+
+        <small>
+
+          {{ meeting.date_start | date:'dd MMM yyyy' }}
+
+        </small>
+
+      </article>
+
+    }
+
+  </div>
+
+</section>

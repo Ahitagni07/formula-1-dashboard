@@ -1,0 +1,171 @@
+<section class="race">
+    <header class="race-header">
+        <div>
+            <h1>Race Dashboard</h1>
+
+            <p>Session {{ sessionKey() }}</p>
+        </div>
+    </header>
+
+    @if (loading()) {
+
+    <div class="loading">Loading race data...</div>
+
+    }
+
+    <!-- Classification -->
+
+    <section class="panel">
+        <h2>Classification</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>POS</th>
+                    <th>DRIVER</th>
+                    <th>TEAM</th>
+                    <th>GAP</th>
+                    <th>LAPS</th>
+                    <th>STATUS</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for ( result of results(); track result.driver_number ) { @let driver =
+                getDriver(result.driver_number);
+
+                <tr (click)="driver && openDriver(driver)">
+                    <td>{{ result.position }}</td>
+
+                    <td>
+                        @if (driver) {
+
+                        <strong> {{ driver.name_acronym }} </strong>
+
+                        <span> {{ driver.full_name }} </span>
+
+                        } @else { {{ result.driver_number }} }
+                    </td>
+
+                    <td>{{ driver?.team_name }}</td>
+
+                    <td>{{ result.gap_to_leader }}</td>
+
+                    <td>{{ result.number_of_laps }}</td>
+
+                    <td>
+                        @if (result.dnf) { DNF } @else if (result.dns) { DNS } @else if (result.dsq) { DSQ } @else {
+                        Finished }
+                    </td>
+                </tr>
+
+                }
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Weather -->
+
+    @if (weather().length > 0) { @let currentWeather = weather()[weather().length - 1];
+
+    <section class="panel">
+        <h2>Weather</h2>
+
+        <div class="weather-grid">
+            <div>
+                <strong> {{ currentWeather.air_temperature }}°C </strong>
+
+                <span>Air</span>
+            </div>
+
+            <div>
+                <strong> {{ currentWeather.track_temperature }}°C </strong>
+
+                <span>Track</span>
+            </div>
+
+            <div>
+                <strong> {{ currentWeather.humidity }}% </strong>
+
+                <span>Humidity</span>
+            </div>
+
+            <div>
+                <strong> {{ currentWeather.wind_speed }} m/s </strong>
+
+                <span>Wind</span>
+            </div>
+        </div>
+    </section>
+
+    }
+
+    <!-- Pit stops -->
+
+    <section class="panel">
+        <h2>Pit Stops</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Driver</th>
+                    <th>Lap</th>
+                    <th>Stop</th>
+                    <th>Lane</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for ( pit of pitStops(); track pit.date ) {
+
+                <tr>
+                    <td>{{ getDriver(pit.driver_number)?.name_acronym ?? pit.driver_number }}</td>
+
+                    <td>{{ pit.lap_number }}</td>
+
+                    <td>{{ pit.stop_duration ?? '-' }}s</td>
+
+                    <td>{{ pit.lane_duration }}s</td>
+                </tr>
+
+                }
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Tyre strategy -->
+
+    <section class="panel">
+        <h2>Tyre Strategy</h2>
+
+        @for ( stint of stints(); track stint.driver_number + '-' + stint.stint_number ) {
+
+        <div class="stint">
+            <strong> {{ getDriver(stint.driver_number)?.name_acronym ?? stint.driver_number }} </strong>
+
+            <span> {{ stint.compound }} </span>
+
+            <span> Lap {{ stint.lap_start }} - {{ stint.lap_end }} </span>
+        </div>
+
+        }
+    </section>
+
+    <!-- Race Control -->
+
+    <section class="panel">
+        <h2>Race Control</h2>
+
+        <div class="race-control">
+            @for ( event of raceControl(); track event.date ) {
+
+            <div>
+                <strong> {{ event.flag ?? event.category }} </strong>
+
+                <span> {{ event.message }} </span>
+            </div>
+
+            }
+        </div>
+    </section>
+</section>

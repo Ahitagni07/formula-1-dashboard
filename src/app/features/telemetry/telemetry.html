@@ -1,0 +1,73 @@
+<section class="telemetry">
+    <header>
+        <h1>Telemetry</h1>
+
+        <p>Driver #{{ driverNumber() }} · Session {{ sessionKey() }}</p>
+    </header>
+
+    @if (loading()) {
+
+    <div class="loading">Loading telemetry...</div>
+
+    }
+
+    <div class="stats">
+        <div>
+            <strong> {{ maxSpeed() }} km/h </strong>
+
+            <span> Maximum Speed </span>
+        </div>
+
+        <div>
+            <strong> {{ maxRpm() }} </strong>
+
+            <span> Maximum RPM </span>
+        </div>
+
+        <div>
+            <strong> {{ telemetry().length }} </strong>
+
+            <span> Data Points </span>
+        </div>
+    </div>
+
+    <section class="panel">
+        <h2>Car Telemetry</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Speed</th>
+                    <th>Throttle</th>
+                    <th>Brake</th>
+                    <th>RPM</th>
+                    <th>Gear</th>
+                    <th>DRS</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for ( data of telemetry(); track data.date ) {
+
+                <tr>
+                    <td>{{ data.date | date:'HH:mm:ss' }}</td>
+
+                    <td>{{ data.speed }}</td>
+
+                    <td>{{ data.throttle }}%</td>
+
+                    <td>{{ data.brake }}%</td>
+
+                    <td>{{ data.rpm }}</td>
+
+                    <td>{{ data.n_gear }}</td>
+
+                    <td>{{ data.drs }}</td>
+                </tr>
+
+                }
+            </tbody>
+        </table>
+    </section>
+</section>

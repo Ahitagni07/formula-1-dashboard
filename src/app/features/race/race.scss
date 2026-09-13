@@ -1,0 +1,119 @@
+.race {
+  max-width: 1400px;
+
+  margin: auto;
+
+  padding: 32px;
+}
+
+.race-header {
+  margin-bottom: 30px;
+}
+
+.panel {
+  margin-bottom: 30px;
+
+  padding: 24px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 12px;
+
+  background: white;
+
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+
+  color: #777;
+
+  font-size: 12px;
+
+  padding: 12px;
+
+  border-bottom: 1px solid #ddd;
+}
+
+td {
+  padding: 14px 12px;
+
+  border-bottom: 1px solid #eee;
+}
+
+tbody tr {
+  cursor: pointer;
+}
+
+tbody tr:hover {
+  background: #f5f5f5;
+}
+
+td span {
+  display: block;
+
+  color: #777;
+
+  font-size: 13px;
+}
+
+.weather-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 20px;
+}
+
+.weather-grid div {
+  padding: 20px;
+
+  background: #f5f5f5;
+
+  border-radius: 10px;
+}
+
+.weather-grid strong {
+  display: block;
+
+  font-size: 24px;
+}
+
+.weather-grid span {
+  color: #777;
+}
+
+.stint {
+  display: flex;
+
+  gap: 20px;
+
+  padding: 12px;
+
+  border-bottom: 1px solid #eee;
+}
+
+.race-control div {
+  padding: 12px;
+
+  border-bottom: 1px solid #eee;
+}
+
+.race-control strong {
+  display: inline-block;
+
+  width: 160px;
+}
+
+.loading {
+  padding: 40px;
+
+  text-align: center;
+}

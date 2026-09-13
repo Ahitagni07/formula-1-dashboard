@@ -1,0 +1,45 @@
+.topbar {
+
+  height: 64px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 32px;
+
+  background: #151515;
+
+  color: white;
+
+  border-bottom: 1px solid #333;
+
+}
+
+.logo {
+
+  font-size: 20px;
+
+  font-weight: 800;
+
+  color: white;
+
+  text-decoration: none;
+
+}
+
+nav a {
+
+  color: #ccc;
+
+  text-decoration: none;
+
+}
+
+main {
+
+  min-height: calc(100vh - 64px);
+
+}

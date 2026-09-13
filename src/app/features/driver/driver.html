@@ -1,0 +1,103 @@
+<section class="driver">
+    @if (driver(); as d) {
+
+    <header class="driver-header" [style.border-color]="'#' + (d.team_colour || '666666')">
+        <img [src]="d.headshot_url" [alt]="d.full_name ?? 'Driver'" />
+
+        <div>
+            <span> {{ d.team_name ?? 'Unknown Team' }} </span>
+
+            <h1>{{ d.full_name ?? 'Unknown Driver' }}</h1>
+
+            <strong> #{{ d.driver_number }} </strong>
+        </div>
+    </header>
+
+    }
+
+    <div class="stats">
+        <div>
+            <strong> {{ laps().length }} </strong>
+
+            <span> Laps </span>
+        </div>
+
+        <div>
+            <strong> @if (bestLap(); as lap) { {{ lap | number:'1.3-3' }} } @else { - } </strong>
+
+            <span> Best Lap </span>
+        </div>
+
+        <div>
+            <strong> {{ stints().length }} </strong>
+
+            <span> Stints </span>
+        </div>
+    </div>
+
+    <section class="panel">
+        <div class="panel-header">
+            <h2>Telemetry</h2>
+
+            <a
+                [routerLink]="[
+          '/telemetry',
+          sessionKey(),
+          driverNumber()
+        ]"
+            >
+                Open telemetry →
+            </a>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Laps</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Lap</th>
+                    <th>Time</th>
+                    <th>S1</th>
+                    <th>S2</th>
+                    <th>S3</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for ( lap of laps(); track lap.lap_number ) {
+
+                <tr>
+                    <td>{{ lap.lap_number }}</td>
+
+                    <td>{{ lap.lap_duration ?? '-' }}</td>
+
+                    <td>{{ lap.duration_sector_1 ?? '-' }}</td>
+
+                    <td>{{ lap.duration_sector_2 ?? '-' }}</td>
+
+                    <td>{{ lap.duration_sector_3 ?? '-' }}</td>
+                </tr>
+
+                }
+            </tbody>
+        </table>
+    </section>
+
+    <section class="panel">
+        <h2>Tyre Stints</h2>
+
+        @for ( stint of stints(); track stint.stint_number ) {
+
+        <div class="stint">
+            <strong> {{ stint.stint_number }} </strong>
+
+            <span> {{ stint.compound }} </span>
+
+            <span> {{ stint.lap_start }} - {{ stint.lap_end }} </span>
+        </div>
+
+        }
+    </section>
+</section>
