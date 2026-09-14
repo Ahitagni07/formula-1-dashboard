@@ -600,7 +600,6 @@ Built as a personal Formula 1 dashboard project while learning and experimenting
 - Angular
 - TypeScript
 - OpenF1 API
-- WebSockets
 - Tauri
 - Rust
 - Desktop application development
