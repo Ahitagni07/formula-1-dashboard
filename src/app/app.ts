@@ -1,28 +1,18 @@
-import {
-  Component
-} from '@angular/core';
+import { Component } from "@angular/core";
 
-import {
-  RouterOutlet,
-  RouterLink
-} from '@angular/router';
+import { RouterOutlet, RouterLink } from "@angular/router";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
 
   standalone: true,
 
-  imports: [
-    RouterOutlet,
-    RouterLink
-  ],
+  imports: [RouterOutlet, RouterLink],
 
-  templateUrl: './app.html',
+  templateUrl: "./app.html",
 
-  styleUrl: './app.scss'
+  styleUrl: "./app.scss",
 })
 export class App {
-
-  readonly title = 'OpenF1 Dashboard';
-
+  readonly title = "OpenF1 Dashboard";
 }

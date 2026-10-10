@@ -2,9 +2,9 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "formula1-dashboard",
   "version": "0.1.0",
-  "identifier": "com.tauri.dev",
+  "identifier": "com.ahitagni.formula1dashboard",
   "build": {
-    "frontendDist": "../dist",
+    "frontendDist": "../dist/formula1-dashboard/browser",
     "devUrl": "http://localhost:4200",
     "beforeDevCommand": "npm run dev",
     "beforeBuildCommand": "npm run build"
