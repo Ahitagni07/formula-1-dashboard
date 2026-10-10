@@ -34,6 +34,12 @@ The desktop version provides:
 
 ---
 
+## Download Windows Application
+
+Download the latest Windows installer:
+
+[Download Formula 1 Dashboard](https://github.com/Ahitagni07/formula-1-dashboard/releases/latest)
+
 # 🛠️ Technology Stack
 
 ## Frontend
